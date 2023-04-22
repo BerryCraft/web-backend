@@ -14,7 +14,7 @@ export class NewsService {
 	}
 	async create(dto: NewsDTO) {
 		return await this.prisma.news.create({
-			data: dto,
+			data: {...dto, createdAt: new Date('now')},
 		})
 	}
 	async update(id: string, dto: NewsDTO) {
