@@ -9,6 +9,9 @@ export class NewsService {
 	async getAll() {
 		return await this.prisma.news.findMany()
 	}
+	async getById(id:string) {
+		return await this.prisma.news.findFirst({where: {id}})
+	}
 	async create(dto: NewsDTO) {
 		return await this.prisma.news.create({
 			data: dto,
