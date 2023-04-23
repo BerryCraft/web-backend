@@ -22,7 +22,6 @@ export class AuthService {
 		const user = await this.prisma.user.create({
 			data: {
 				...dto,
-				createdAt: new Date('now'),
 				//prettier-ignore
 				role: "PLAYER",
 				skinId: undefined,
@@ -34,13 +33,13 @@ export class AuthService {
 
 		const tokens = await this.issueTokenPair(user.id)
 
-		return { user, tokens }
+		return { user, ...tokens }
 	}
 	async login(dto: LoginDTO) {
 		const user = await this.validateUser(dto)
 		const tokens = await this.issueTokenPair(user.id)
 
-		return { user, tokens }
+		return { user, ...tokens }
 	}
 
 	private async validateUser(dto: LoginDTO) {
@@ -74,6 +73,6 @@ export class AuthService {
 
 		const tokens = await this.issueTokenPair(user.id)
 
-		return { user, tokens }
+		return { user, ...tokens }
 	}
 }

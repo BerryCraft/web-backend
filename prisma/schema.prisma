@@ -18,6 +18,7 @@ model User {
   berry     Int      @default(0)
   role      String
   skin      Skin?
+  login     String
   skinId    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
